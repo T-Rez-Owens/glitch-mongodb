@@ -1,0 +1,29 @@
+<head>
+    <style>
+        body { font-family: 'Helvetica', 'Arial', sans-serif;}
+    </style>
+</head>
+
+<h1>Sensors</h1>
+
+<table>
+  <tr>
+    <th>Sensor</th>
+    <th>Value</th>
+    <th>Date/Time Received</th>
+  </tr>
+  
+{% for sensor in points %}
+    
+  <tr> 
+    <td>{{ sensor.sensor }}</td>
+    <td>{{ sensor.value }}</td>
+    <td>{{ sensor.time }}</td>
+  </tr>
+    
+{% else %}
+  <tr> 
+    <td>No Sensors found</td>
+  </tr>
+{% endfor %}
+</table> 
