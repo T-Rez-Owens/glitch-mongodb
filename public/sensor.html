@@ -2,7 +2,7 @@
 <html>
 
     <head>
-        <link rel="stylesheet" href="/styles/styles-5a51ca332c.css"/>
+        <link rel="stylesheet" href="/styles/styles-a1deabe037.css"/>
         <title>Sensor</title>
         <style>
             body {
@@ -39,8 +39,8 @@
             <tr>
                 <td>{{ loop.index }}</td>
                 <td id="{{ loop.index }}.{{ loop.index -1 }}">{{ sensor.sensor }}</td>
-                <td id="{{ loop.index }}.{{ loop.index }}"> <input name:"{{ sensor.sensor }}" class="{{ loop.index }}.{{ loop.index }} sensor--value" value="{{ sensor.value }}" type='float'> </td>
-                <td id="{{ loop.index }}.{{ loop.index +1 }} "> <input class="{{ loop.index }}.{{ loop.index }} sensor--time" value="{{ sensor.time }}"type='datetime'> </td>
+                <td id="{{ loop.index }}.{{ loop.index }}"><input name:"{{ sensor.sensor }}" class="{{ loop.index }}.{{ loop.index }} sensor--value" value="{{ sensor.value }}" type='float'></td>
+                <td id="{{ loop.index }}.{{ loop.index +1 }} "><input class="{{ loop.index }}.{{ loop.index }} sensor--time" value="{{ sensor.time }}"type='datetime'></td>
             </tr>
 
             {% else %}
@@ -55,14 +55,7 @@
                 <input name:"Canvas Height" class="line-graph-canvas-input heightLG" id="heightLG" value="" type="number">
                 <input name:"Number of Data Points" class="line-graph-canvas-input numberOfPointsLG" id="numberOfPointsLG" value="" type="number">
             </div>
-        <div class="wrapper"> 
-            <div tabindex="0" class="button draw-canvas-button">
-                Click me to draw the canvas!
-            </div>
-        </div>
         
-        <canvas id="myCanvas" class="line-graph-canvas"></canvas>
-        
-        <script src="/scripts/script-c1b0ae531a.js"></script>
+        <script src="/scripts/script-b38520cf25.js"></script>
 	</body>
 </html>
