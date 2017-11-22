@@ -22,6 +22,7 @@ img {
 
 input {
     width: 70%;
+    padding:0 15px;
 }
 canvas {
     margin-top:20px; 
@@ -62,7 +63,7 @@ table, th, td {
 
 }
 th {padding: 15px}
-td {padding: 5px;}
+td {padding: 5px 15px}
 table {
     border-spacing: 0px;
 }
