@@ -7,8 +7,8 @@
   <body>
      <form action="/add_dataPoint" method="POST">
        <p style=" margin-top:94px; width:5%;margin-right: auto;margin-left: auto;display: block;">
-         sensor: <input type="text" name="sensor" value=""/>
-         value: <input style="margin-top:5px; display:block" type="number" name="value" value=""/>
+         sensor: <input type="text" name="sensor" value="lux"/>
+         value: <input style="margin-top:5px; display:block" type="float" name="value" value="{{ randomInt }}"/>
          <input style="margin-top:25px; display:block" type="submit" value="Submit"/>
        </p>
        
