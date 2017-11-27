@@ -64,8 +64,9 @@ class App {
                 sensor:sensor,
             };
             Sensor.limit = parseInt(req.body.limit,10) || 20;
-            var date = new Date();
-            var time = momentApp.utc();
+            var time = momentApp.utc(new Date()).format("YYYY-MM-DD HH:mm Z");
+            console.log(time);
+
             var iSensor = {
                 sensor:sensor,
                 value:value,
@@ -80,8 +81,9 @@ class App {
                 var count = 0;
                 cursor.forEach(sensor => {
                     count=count+1;
+                    sensor.time= momentApp(new Date(sensor.time), "YYYY-MM-DD HH:mm Z");
                     sensorArray.push(sensor);
-                    //console.log(sensor);
+                    console.log(sensor);
                 },function(err){
                     console.log("Retrieved: ", count,Sensor.sensor+" sensors");
                     
