@@ -60,10 +60,11 @@ class App {
         app.post('/add_dataPoint', function(req, res, next) {
             var sensor = req.body.sensor.toString();
             var value = req.body.value;
+            
             const Sensor = {
-                sensor:sensor,
-                limit:100
+                sensor:sensor
             };
+            Sensor.limit = parseInt(req.body.limit,10) || 20;
             var date = new Date();
             var time = momentApp().format('llll');
             var iSensor = {

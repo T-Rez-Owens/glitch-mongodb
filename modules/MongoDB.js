@@ -1,4 +1,3 @@
-'use strict'
 const MongoClient = require('mongodb').MongoClient;
 const assert = require('assert'),
     moment = require('moment'),
@@ -79,16 +78,22 @@ class MongoDB{
         return dbPromise.then(db =>{
             var options = {};
             options.sensor = sensor;
-            options.limit = 10;
+            console.log(sensor);
+            options.limit = sensor.limit !== undefined ? sensor.limit : 10;
             options.skip = 0;
             var projection = { _id: false };
             var query = this.queryDocument(options);
             var cursor = db.collection('points').find(query);
             cursor.project(projection);
+            db.collection('points').find(query).count(function(err,numOfSensors){
+                console.log(`Returning ${options.limit} of ${numOfSensors}`);
+                
+            });
+            
+            
             cursor.limit(options.limit);
             cursor.skip(options.skip);
             cursor.sort([["_id",-1]]);//latest n docs without having to worry about time-stamp formatting.
-            cursor.limit(10);
             callback(cursor);    
         });
     }
@@ -101,17 +106,18 @@ class MongoDB{
             return query;
     }
     insertSensor(sensor,callback){
-        if(sensor.sensor==null){
+      
+        if(parseInt(sensor.value,10).isNan || sensor.sensor==null){
             console.log("bad sensor");
         } else {
             var dbPromise = this.connect();
             return dbPromise.then(db =>{
                 db.collection('points').insertOne(
-                    {"sensor":sensor.sensor, "value":sensor.value, "time":sensor.time }
+                    {"sensor":sensor.sensor, "value":parseInt(sensor.value,10), "time":sensor.time }
                   , (err,result) => {
                         if (err) reject(err)
                         if (result) {
-                            console.log(`finished inserting ${result.insertedCount}  ${sensor.sensor} sensor with value:${sensor.value}`);
+                            console.log(`finished inserting ${result.insertedCount}  ${sensor.sensor} sensor with value:${parseInt(sensor.value,10)}`);
                             callback(result);
                         } else {
                             callback({});
