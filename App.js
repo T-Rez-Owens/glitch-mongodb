@@ -65,7 +65,7 @@ class App {
             };
             Sensor.limit = parseInt(req.body.limit,10) || 20;
             var date = new Date();
-            var time = momentApp.utc().format('llll');
+            var time = momentApp.utc();
             var iSensor = {
                 sensor:sensor,
                 value:value,
