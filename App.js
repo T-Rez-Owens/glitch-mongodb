@@ -65,7 +65,7 @@ class App {
             };
             Sensor.limit = parseInt(req.body.limit,10) || 20;
             var time = momentApp.utc(new Date()).format("YYYY-MM-DD HH:mm Z");
-            console.log(time);
+            //console.log(time);
 
             var iSensor = {
                 sensor:sensor,
