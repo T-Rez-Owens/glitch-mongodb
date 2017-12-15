@@ -1,23 +1,12 @@
 {
-  "name": "mongodb",
+  "name": "DataVisualizationApp",
   "version": "0.0.1",
   "description": "Example app interacting with MongoDB",
-  "main": "startServer.js",
+  "main": "server.js",
   "scripts": {
-    "start": "node startServer.js"
-  },
-  "dependencies": {
-    "body-parser": "^1.18.2",
-    "chart.js": "^2.7.1",
-    "consolidate": "^0.15.0",
-    "dotenv": "^4.0.0",
-    "express": "^4.16.2",
-    "jquery": "^3.2.1",
-    "moment": "^2.19.2",
-    "mongodb": "^2.2.33",
-    "nunjucks": "^3.0.1",
-    "superagent": "^3.8.1",
-    "xlsx": "^0.11.12"
+    "start": "node ./app/assets/server/startServer.js",
+    "test": "jest --watch",
+    "build": "gulp build"
   },
   "engines": {
     "node": "4.4.5"
@@ -29,5 +18,15 @@
     "database"
   ],
   "license": "MIT",
-  "repository": "private"
+  "repository": "private",
+  "dependencies": {
+    "chart.js": "^2.7.1",
+    "consolidate": "^0.15.0",
+    "dotenv": "^4.0.0",
+    "express": "^4.16.2",
+    "mongodb": "^2.2.33",
+    "nunjucks": "^3.0.1",
+    "superagent": "^3.8.1",
+    "xlsx": "^0.11.12"
+  }
 }
