@@ -12,7 +12,7 @@ var uriApp = 'mongodb://'+process.env.USER+':'+process.env.PASS+'@'+process.env.
 var serverApp;
 serverApp = new MongoSApp(uriApp);
 var XLSX = require('XLSX');
-
+console.log(process.env.SYSTEM);
 
 
 const requestApp = require('superagent');
@@ -148,8 +148,15 @@ class App {
         });
         app.get('/schedule',function(req, res, next){
             if(typeof require !== 'undefined') XLSX = require('xlsx');
-            var workbook = XLSX.readFile('\\\\OFS1\\SHARED\\USERS\\MFG\\SHARED\\Chairs Powder Coating\\PC SCHEDULE 2017.xlsx');
+            var fileString = "";
+            if(process.env.SYSTEM == 'local'){
+                fileString = '\\\\OFS1\\SHARED\\USERS\\MFG\\SHARED\\Chairs Powder Coating\\PC SCHEDULE 2017.xlsx';
+            }
+            else{
+                fileString = pathApp.resolve(__dirname + "/public/sample/sampleSchedule.xlsx");
+            }
             
+            var workbook = XLSX.readFile(fileString);
             var date = momentApp(new Date());
             //console.log(parseInt(req.query.dow));
             var dow = parseInt(req.query.dow) || date.day();//since dow is not going to be 0 for sunday this works. if I wanted to use sunday I'd have to re-think this logic.
