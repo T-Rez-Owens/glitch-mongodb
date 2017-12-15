@@ -20,6 +20,7 @@
   "license": "MIT",
   "repository": "private",
   "dependencies": {
+    "body-parser": "^1.18.2",
     "chart.js": "^2.7.1",
     "consolidate": "^0.15.0",
     "dotenv": "^4.0.0",
