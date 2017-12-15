@@ -1,0 +1,103 @@
+<!doctype HTML>
+<html>
+
+    <head>
+        <link rel="stylesheet" href="/styles/styles-b23b81f2ad.css"/>
+        <title>Sensor</title>
+        <style>
+            body {
+                font-family: 'Helvetica', 'Arial', sans-serif;
+            }
+        </style>
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+        
+    </head>
+
+    <body>
+        <h1>RLO: {{RLO}}</h1>
+        <table>
+            <tr>
+                <th>Part Identifier</th>
+                <th>Part description</th>
+                <th>Part number</th>
+                <th>Quantity</th>
+                
+            </tr>
+
+            {% for key, value in part %}
+
+            <tr>
+                <td id="{{ loop.index }}.{{ loop.index-1 }}">{{key}}</td><!--Part Identifier-->
+                {% if key == "productLine" %}
+                    <td><!--Part Description start-->
+                    {% for nKey, nValue in value %}
+                        {{nKey}}</td><!--Part Description end-->
+                        <td><!--Part number start-->
+                        {%for nnKey, nnValue in nValue %}
+                            {{nnKey}}:{{nnValue}}<br />
+                        {% endfor%}
+                        </td><!--Part number end-->
+                    {% else %}
+                        {{value}}
+                    </td><!--Part description end-->
+                    {% endfor %}
+                {% elif key == "backShape" %}
+                    <td><!--Part Description start-->
+                    {% for nKey, nValue in value %}
+                        {{nKey}}</td><!--Part Description end-->
+                        <td><!--Part number start-->
+                        {{nValue}}
+                        
+                    {% else %}
+                        {{value}}
+                    </td><!--Part description end-->
+                    <td><!--Part number start-->
+                    {% endfor %}
+                    </td><!--Part number end-->
+                {% elif key == "backOption" %}
+                <td><!--Part Description start-->
+                    {{value}}
+                </td><!--Part description end-->
+                <td><!--Part number start-->
+                    {{value}}
+                </td><!--Part number end-->
+                {% elif key == "options" %}
+                    <td><!--Part Description start-->
+                    {% for nKey, nValue in value %}
+                        {{nKey}}<br />
+                    {% endfor %}
+                    </td><!--Part Description end-->    
+                    <td><!--Part number start-->
+                    {% for nKey, nValue in value %}
+                        {{nValue}}<br />
+                    {% endfor %}
+                    </td>
+                {% else %}
+                    <td><!--Part Description start-->
+                    {% for nKey, nValue in value %}
+                        {{nKey}}</td><!--Part Description end-->
+                        <td><!--Part number start-->
+                        {{nValue}}
+                        
+                    {% else %}
+                        {{value}}
+                    </td><!--Part description end-->
+                    <td><!--Part number start-->
+                    {% endfor %}
+                    </td><!--Part number end-->
+                {% endif %}
+                <td></td>
+
+            </tr>
+
+            {% else %}
+            <tr>
+                <td>No parts found</td>
+            </tr>
+            {% endfor %}
+        </table>
+        <a class = "button" href="/partNumberGen?rlo={{ RLO -1 }}">Previous RLO</a>
+        <a class = "button" href="/partNumberGen?rlo={{ RLO +1 }}">Next RLO</a>
+	</body>
+</html>

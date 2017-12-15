@@ -79,7 +79,6 @@ class MongoDB{
         return dbPromise.then(db =>{
             var options = {};
             options.sensor = sensor;
-            console.log(sensor);
             options.limit = sensor.limit !== undefined ? sensor.limit : 10;
             options.skip = 0;
             var projection = { _id: false };

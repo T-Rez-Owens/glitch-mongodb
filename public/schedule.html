@@ -1,0 +1,45 @@
+<!doctype HTML>
+<html>
+
+    <head>
+        <link rel="stylesheet" href="/styles/styles-b23b81f2ad.css"/>
+        <title>Sensor</title>
+        <style>
+            body {
+                font-family: 'Helvetica', 'Arial', sans-serif;
+            }
+        </style>
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+        
+    </head>
+
+    <body>
+        <h1>Schedule for {{sdow}}</h1>
+        <table>
+            <tr>
+                <th>Order</th>
+                <th>Chair type</th>
+                <th>Quantity</th>
+                <th>New Order</th>
+            </tr>
+
+            {% for cell in productArray %}
+
+            <tr>
+                <td id="{{ loop.index }}.{{ loop.index -1 }}">{{ orderArray[loop.index-1] }}</td>
+                <td id="{{ loop.index }}.{{ loop.index }}">{{ productArray[loop.index-1] }}</td>
+                <td id="{{ loop.index }}.{{ loop.index +1 }}">{{ valueArray[loop.index-1] }}</td>
+                <td id="{{ loop.index }}.{{ loop.index +2 }}"><input id='{{ orderArray[loop.index-1] }}' name="{{loop.index}}"></td>
+            </tr>
+
+            {% else %}
+            <tr>
+                <td>No Sensors found</td>
+            </tr>
+            {% endfor %}
+        </table>
+        <a class="button" href="/schedule?dow={% if dow == 1 %}5{% else %}{{dow -1}}{% endif %}">Previous Day</button>
+        <a class="button" href="/schedule?dow={% if (dow == 6) or (dow == 5) %}1{% else %}{{dow +1}}{% endif %}">Next Day</button>
+	</body>
+</html>
